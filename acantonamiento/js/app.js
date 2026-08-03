@@ -83,6 +83,36 @@ async function loadMarkdown(src) {
   return marked.parse(text);
 }
 
+/** Ficha tables store long descriptions in one cell; restore readable blocks. */
+function formatFichaTables(root) {
+  root.querySelectorAll("td").forEach((td) => {
+    if ((td.textContent || "").length < 100) return;
+
+    let html = td.innerHTML;
+
+    // Major sections: Motivación, Experimentación, Recupero, DURAS, tips…
+    html = html.replace(
+      /(?=<(?:strong|b)>\s*(?:Motivación|Experimentación|Recupero|Parte\s+[A-Z]|Chequeo\s+DURAS|Tip(?:\s+si)?|Ley de la Manada|Antes de|Ambientación)[^<]*<\/(?:strong|b)>)/gi,
+      "<br><br>"
+    );
+
+    // Station blocks with emoji (Destino Campamento, etc.)
+    html = html.replace(/(?=(?:🚰|🍽|🍽️|🌳|🛏|🛏️)\s*)/g, "<br><br>");
+
+    // Numbered steps after a sentence: ". 1) …"
+    html = html.replace(/(?<=[.!?…])\s+(?=\d+[\)\.]\s)/g, "<br>");
+
+    // DURAS letters as short lines: "<strong>D</strong> — …"
+    html = html.replace(
+      /\s+(<(?:strong|b)>[DURASIL]<\/(?:strong|b)>\s*[—–-])/g,
+      "<br>$1"
+    );
+
+    html = html.replace(/^(?:<br>\s*)+/, "").replace(/(?:<br>\s*)+$/, "");
+    td.innerHTML = html;
+  });
+}
+
 function renderTickets(images) {
   const grid = images
     .map(
@@ -121,6 +151,7 @@ async function navigate(routeId, { push = true } = {}) {
       const html = await loadMarkdown(route.src);
       els.content.className = "content md";
       els.content.innerHTML = html;
+      formatFichaTables(els.content);
     } else if (route.kind === "tickets") {
       els.content.className = "content";
       els.content.innerHTML = renderTickets(route.images);

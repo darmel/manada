@@ -317,8 +317,9 @@ button {
 .md th,
 .md td {
   border: 1px solid #d5d0c4;
-  padding: 0.45rem 0.55rem;
+  padding: 0.55rem 0.65rem;
   vertical-align: top;
+  line-height: 1.55;
 }
 
 .md th {
