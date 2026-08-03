@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Acantonamiento Agosto 2026 — Manada Peña de la Paz</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/app.css" />
+  </head>
+  <body>
+    <section id="view-portada" class="view-portada" aria-label="Portada">
+      <img
+        class="view-portada__bg"
+        src="portada.jpg"
+        alt="Manada Peña de la Paz — acantonamiento"
+      />
+      <div class="view-portada__shade" aria-hidden="true"></div>
+      <div class="view-portada__content">
+        <p class="view-portada__brand">Peña de la Paz</p>
+        <h1 class="view-portada__title">Acantonamiento Agosto 2026</h1>
+        <p class="view-portada__meta">
+          En la parroquia · sábado 15:30 → domingo 15:30 · Manada
+        </p>
+        <button type="button" class="btn-enter" id="btn-enter">Entrar</button>
+      </div>
+    </section>
+
+    <div id="sidebar-backdrop" class="sidebar-backdrop"></div>
+
+    <div id="app" class="app is-hidden">
+      <aside id="sidebar" class="sidebar" aria-label="Menú">
+        <div class="sidebar__brand">
+          <strong>Peña de la Paz</strong>
+          <span>Acantonamiento · ago 2026</span>
+        </div>
+        <nav class="nav">
+          <a href="#portada" class="nav__link" data-route="portada">Portada</a>
+          <a href="#planificacion" class="nav__link" data-route="planificacion"
+            >Planificación</a
+          >
+          <button
+            type="button"
+            class="nav__toggle"
+            id="nav-presupuesto"
+            aria-expanded="false"
+          >
+            Presupuesto
+          </button>
+          <div class="nav__sub" id="nav-presupuesto-sub">
+            <a
+              href="#presupuesto-compras"
+              class="nav__link"
+              data-route="presupuesto-compras"
+              >Compras / presupuesto</a
+            >
+            <a
+              href="#presupuesto-lista"
+              class="nav__link"
+              data-route="presupuesto-lista"
+              >Lista de compras</a
+            >
+            <a
+              href="#presupuesto-tickets"
+              class="nav__link"
+              data-route="presupuesto-tickets"
+              >Tickets</a
+            >
+          </div>
+        </nav>
+      </aside>
+
+      <main class="main">
+        <div class="main__bar">
+          <button type="button" class="menu-toggle" id="menu-toggle" aria-label="Menú">
+            Menú
+          </button>
+          <h1 class="main__title" id="page-title">Planificación</h1>
+        </div>
+        <article id="content" class="content md"></article>
+      </main>
+    </div>
+
+    <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Ticket ampliado">
+      <button type="button" class="lightbox__close" id="lightbox-close">Cerrar</button>
+      <img id="lightbox-img" src="" alt="" />
+    </div>
+
+    <script src="vendor/marked.min.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>
