@@ -78,8 +78,6 @@ const els = {
   lightboxImg: document.getElementById("lightbox-img"),
   presupuestoToggle: document.getElementById("nav-presupuesto"),
   presupuestoSub: document.getElementById("nav-presupuesto-sub"),
-  campaToggle: document.getElementById("nav-campa"),
-  campaSub: document.getElementById("nav-campa-sub"),
 };
 
 function setActiveNav(routeId) {
@@ -89,10 +87,6 @@ function setActiveNav(routeId) {
   const underPresupuesto = routeId.startsWith("presupuesto-");
   els.presupuestoSub.classList.toggle("is-open", underPresupuesto);
   els.presupuestoToggle.classList.toggle("is-open", underPresupuesto);
-
-  const underCampa = routeId.startsWith("campa-");
-  els.campaSub.classList.toggle("is-open", underCampa);
-  els.campaToggle.classList.toggle("is-open", underCampa);
 }
 
 function closeMobileNav() {
@@ -213,12 +207,6 @@ function init() {
     const open = !els.presupuestoSub.classList.contains("is-open");
     els.presupuestoSub.classList.toggle("is-open", open);
     els.presupuestoToggle.classList.toggle("is-open", open);
-  });
-
-  els.campaToggle.addEventListener("click", () => {
-    const open = !els.campaSub.classList.contains("is-open");
-    els.campaSub.classList.toggle("is-open", open);
-    els.campaToggle.classList.toggle("is-open", open);
   });
 
   els.menuToggle.addEventListener("click", () => {

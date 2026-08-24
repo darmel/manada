@@ -1,13 +1,13 @@
 :root {
-  --ink: #1c2418;
-  --ink-soft: #3d4a36;
-  --paper: #f7f3eb;
-  --paper-2: #efe8dc;
-  --forest: #1e3d2f;
-  --forest-mid: #2a5240;
-  --leaf: #3d7a55;
-  --gold: #c4a35a;
-  --line: rgba(28, 36, 24, 0.12);
+  --ink: #281f04;
+  --ink-soft: #5f4b15;
+  --paper: #fff5bf;
+  --paper-2: #ffe17a;
+  --forest: #6a4b09;
+  --forest-mid: #865f10;
+  --leaf: #b68000;
+  --gold: #ffca21;
+  --line: rgba(106, 75, 9, 0.24);
   --sidebar-w: 280px;
   --font-display: "Fraunces", Georgia, serif;
   --font-body: "Source Sans 3", "Segoe UI", sans-serif;
@@ -109,6 +109,10 @@ button {
   max-width: 28rem;
 }
 
+.view-portada__meta span {
+  display: block;
+}
+
 .btn-enter {
   appearance: none;
   border: 1px solid rgba(247, 243, 235, 0.45);
@@ -142,8 +146,10 @@ button {
 .sidebar {
   width: var(--sidebar-w);
   flex-shrink: 0;
-  background: var(--forest);
-  color: #e8efe9;
+  background:
+    linear-gradient(180deg, rgba(255, 216, 74, 0.88) 0%, rgba(255, 216, 74, 0.72) 35%, rgba(255, 216, 74, 0.6) 100%),
+    var(--paper-2);
+  color: var(--ink);
   display: flex;
   flex-direction: column;
   padding: 1.25rem 0 1.5rem;
@@ -155,7 +161,7 @@ button {
 
 .sidebar__brand {
   padding: 0 1.25rem 1.25rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(107, 81, 15, 0.24);
   margin-bottom: 0.75rem;
 }
 
@@ -171,7 +177,7 @@ button {
   display: block;
   margin-top: 0.25rem;
   font-size: 0.8rem;
-  opacity: 0.7;
+  opacity: 0.85;
 }
 
 .nav {
@@ -198,13 +204,13 @@ button {
 
 .nav__link:hover,
 .nav__toggle:hover {
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(107, 81, 15, 0.12);
 }
 
 .nav__link.is-active,
 .nav__toggle.is-open {
-  background: rgba(196, 163, 90, 0.18);
-  color: #f3e6c4;
+  background: rgba(107, 81, 15, 0.2);
+  color: #1f1904;
 }
 
 .nav__sub {
@@ -225,12 +231,16 @@ button {
 }
 
 .nav__section-label {
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
+  font-size: 0.86rem;
+  font-weight: 800;
+  letter-spacing: 0.11em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.45);
-  padding: 0.9rem 0.75rem 0.25rem;
+  color: #6b510f;
+  background: rgba(255, 216, 74, 0.45);
+  border-left: 3px solid #c79800;
+  border-radius: 4px;
+  margin: 0.65rem 0.35rem 0.25rem;
+  padding: 0.55rem 0.75rem 0.45rem;
   pointer-events: none;
 }
 
@@ -239,7 +249,7 @@ button {
   min-width: 0;
   padding: clamp(1.25rem, 3vw, 2.25rem);
   background:
-    radial-gradient(ellipse at top right, rgba(61, 122, 85, 0.06), transparent 45%),
+    radial-gradient(ellipse at top right, rgba(255, 216, 74, 0.28), transparent 50%),
     var(--paper);
 }
 
@@ -268,7 +278,7 @@ button {
 }
 
 .content {
-  background: #fffdf8;
+  background: #fffef2;
   border: 1px solid var(--line);
   border-radius: 6px;
   padding: clamp(1rem, 2.5vw, 1.75rem);
@@ -333,20 +343,20 @@ button {
 }
 
 .md th {
-  background: #e8f0ea;
+  background: #fff0bb;
   text-align: left;
   font-weight: 600;
 }
 
 .md tr:nth-child(even) td {
-  background: #faf7f0;
+  background: #fff9df;
 }
 
 .md blockquote {
   margin: 0.75rem 0;
   padding: 0.5rem 0.85rem;
   border-left: 3px solid var(--leaf);
-  background: #f3f7f4;
+  background: #fff6d1;
 }
 
 .md code {
