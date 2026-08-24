@@ -541,9 +541,27 @@ Akela contará a la Manada que los Viejos Lobos enseñan que, cuando una Manada 
 
 # Evaluación
 
-> ⚠️ **Nota pendiente:** Esta sección registra por ahora la valoración de los lobatos actividad por actividad. Falta complementarla con la evaluación de los **objetivos del campamento** (O1–O6): qué se cumplió, qué quedó a medias y qué llevar al próximo ciclo.
+> ⚠️ **Nota pendiente:** Esta sección registra por ahora la valoración de los lobatos actividad por actividad. Falta complementarla con la evaluación de los **objetivos del campamento** (O1–O6): qué se cumplió, qué quedó a medias y qué llevar al próximo ciclo. test
 
 ---
+
+### Actividades de programa
+1. El Mapa Vivo - Descubrimos el lugar 
+2. Guardianes del Campa
+3. Huellas que hacen Manada **(no se hizo)**
+4. Taller de magia
+5. Camino al Alpatauca **(se cambio y se hizo un recorrido sigueindo el rio río abajo y luego río arriba para regresar)**
+6. Exploración de la selva (para la caminata)
+7. Laboratorio de Juegos **(nos e hizo)**
+8. Taller "El Rincón de la Guarida"
+9. La Aldea de la Manada **(no se hizo)**
+10. Las Habilidades de Rikki Tikki Tavi
+11. Se hizo una actividad de una carta a ellos mismos, hay que sumarla al documento
+
+### Juegos nocturnos
+1. Juego Nocturno - La Noche de los Ojos Brillantes
+2. Juego Nocturno - La Constelación del Pueblo Libre (no se hizo, en su lugar se hizo La Sardina)
+
 
 ## Valoración de los lobatos por actividad
 
