@@ -66,6 +66,18 @@ const ROUTES = {
   },
 };
 
+const DEEP_LINK_TARGETS = {
+  "camino-al-alpatauca": "Camino al Alpatauca",
+  "el-mapa-vivo": "El Mapa Vivo",
+  "las-habilidades-de-rikki-tikki-tavi": "Las Habilidades De Rikki Tikki Tavi",
+  "guardianes-del-campa": "GUARDIANES DEL CAMPA",
+  "exploracion-de-la-selva": "Exploración de la selva",
+  "laboratorio-de-juegos": "Laboratorio de Juegos",
+  "huellas-que-hacen-manada": "Huellas que hacen Manada",
+  "el-rincon-de-la-guarida": "El Rincón de la Guarida",
+  "taller-de-magia": "Taller de magia",
+};
+
 const els = {
   portada: document.getElementById("view-portada"),
   app: document.getElementById("app"),
@@ -92,6 +104,48 @@ function setActiveNav(routeId) {
 function closeMobileNav() {
   els.sidebar.classList.remove("is-open");
   els.backdrop.classList.remove("is-open");
+}
+
+function parseHash(rawHash) {
+  const clean = (rawHash || "").replace(/^#/, "").trim();
+  if (!clean) return { routeId: "portada", deepId: "" };
+  const [routeId, deepId = ""] = clean.split("/");
+  return { routeId, deepId };
+}
+
+function findDeepTarget(root, deepId) {
+  const wanted = DEEP_LINK_TARGETS[deepId];
+  if (!wanted) return null;
+
+  const normalize = (value) =>
+    (value || "")
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "");
+
+  const wantedNorm = normalize(wanted);
+  const nodes = root.querySelectorAll("h1, h2, h3, h4, h5, h6, td, th, p");
+  for (const node of nodes) {
+    const text = normalize(node.textContent || "");
+    if (text.includes(wantedNorm)) return node;
+  }
+  return null;
+}
+
+function scrollToDeepTarget(routeId, deepId) {
+  if (!deepId || routeId !== "campa-actividades") return;
+  const target = findDeepTarget(els.content, deepId);
+  if (!target) return;
+  target.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+function applyRouteFromHash() {
+  const { routeId, deepId } = parseHash(location.hash);
+  if (routeId === "portada") {
+    showPortada();
+    return;
+  }
+  navigate(routeId, { push: false, deepId });
 }
 
 function showPortada() {
@@ -150,7 +204,7 @@ function renderTickets(images) {
   return `<div class="tickets">${grid}</div>`;
 }
 
-async function navigate(routeId, { push = true } = {}) {
+async function navigate(routeId, { push = true, deepId = "" } = {}) {
   const route = ROUTES[routeId] || ROUTES.planificacion;
   const id = ROUTES[routeId] ? routeId : "planificacion";
 
@@ -165,7 +219,10 @@ async function navigate(routeId, { push = true } = {}) {
   setActiveNav(id);
   closeMobileNav();
 
-  if (push) history.pushState({ route: id }, "", `#${id}`);
+  if (push) {
+    const nextHash = deepId ? `#${id}/${deepId}` : `#${id}`;
+    history.pushState({ route: id, deepId }, "", nextHash);
+  }
 
   els.content.className = "content loading";
   els.content.textContent = "Cargando…";
@@ -176,6 +233,7 @@ async function navigate(routeId, { push = true } = {}) {
       els.content.className = "content md";
       els.content.innerHTML = html;
       formatFichaTables(els.content);
+      scrollToDeepTarget(id, deepId);
     } else if (route.kind === "tickets") {
       els.content.className = "content";
       els.content.innerHTML = renderTickets(route.images);
@@ -217,6 +275,17 @@ function init() {
   els.backdrop.addEventListener("click", closeMobileNav);
 
   els.content.addEventListener("click", (e) => {
+    const anchor = e.target.closest('a[href^="#"]');
+    if (anchor) {
+      const href = anchor.getAttribute("href") || "";
+      const { routeId, deepId } = parseHash(href);
+      if (ROUTES[routeId]) {
+        e.preventDefault();
+        navigate(routeId, { deepId });
+        return;
+      }
+    }
+
     const card = e.target.closest(".ticket-card");
     if (!card) return;
     els.lightboxImg.src = card.dataset.full;
@@ -236,15 +305,10 @@ function init() {
     }
   });
 
-  window.addEventListener("popstate", () => {
-    const hash = location.hash.replace("#", "") || "portada";
-    if (hash === "portada") showPortada();
-    else navigate(hash, { push: false });
-  });
+  window.addEventListener("popstate", applyRouteFromHash);
+  window.addEventListener("hashchange", applyRouteFromHash);
 
-  const initial = location.hash.replace("#", "") || "portada";
-  if (initial === "portada") showPortada();
-  else navigate(initial, { push: false });
+  applyRouteFromHash();
 }
 
 init();
