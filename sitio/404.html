@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>404 - Pagina no encontrada | Manada 2026</title>
+    <meta
+      name="description"
+      content="La pagina que buscas no existe o fue movida. Volve al inicio del sitio de Manada 2026."
+    />
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="icon" href="imagenes/favicon.ico" sizes="any" />
+    <link rel="stylesheet" href="css/app.css" />
+    <style>
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        background:
+          radial-gradient(ellipse at top right, rgba(255, 202, 33, 0.24), transparent 52%),
+          var(--paper);
+      }
+
+      .not-found {
+        width: min(92vw, 720px);
+        background: #fffef2;
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        padding: clamp(1.2rem, 3vw, 2rem);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+      }
+
+      .not-found__code {
+        margin: 0;
+        color: var(--leaf);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        font-size: 0.82rem;
+        font-weight: 700;
+      }
+
+      .not-found h1 {
+        margin: 0.35rem 0 0.85rem;
+        font-family: var(--font-display);
+        color: var(--forest);
+        font-size: clamp(1.5rem, 4vw, 2.2rem);
+      }
+
+      .not-found p {
+        margin: 0;
+        color: var(--ink-soft);
+        line-height: 1.55;
+      }
+
+      .not-found__actions {
+        margin-top: 1.35rem;
+        display: flex;
+        gap: 0.7rem;
+        flex-wrap: wrap;
+      }
+
+      .btn {
+        appearance: none;
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        padding: 0.6rem 0.95rem;
+        text-decoration: none;
+        font-weight: 600;
+      }
+
+      .btn--primary {
+        background: var(--gold);
+        color: #1f1904;
+      }
+
+      .btn--secondary {
+        background: #fff9df;
+        color: var(--ink);
+      }
+    </style>
+  </head>
+  <body>
+    <main class="not-found" aria-labelledby="titulo-404">
+      <p class="not-found__code">Error 404</p>
+      <h1 id="titulo-404">Pagina no encontrada</h1>
+      <p>
+        La ruta que abriste no existe en este sitio o fue movida. Podes volver al inicio y entrar desde el menu principal.
+      </p>
+      <div class="not-found__actions">
+        <a class="btn btn--primary" href="index.html#portada">Volver al inicio</a>
+        <a class="btn btn--secondary" href="index.html">Abrir sitio</a>
+      </div>
+    </main>
+  </body>
+</html>
